@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="MarSU Faculty Management" />
+        <meta name="author" content="Marinduque State University" />
+        <title>Faculty - MarSU Admin</title>
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+        <link href="../css/styles.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <style>
+            :root {
+                --apple-green: #4CAF50;
+                --apple-green-dark: #388E3C;
+            }
+            
+            .sb-topnav {
+                background-color: var(--apple-green) !important;
+            }
+            .btn-primary {
+                background-color: var(--apple-green);
+                border-color: var(--apple-green);
+            }
+            .btn-primary:hover {
+                background-color: var(--apple-green-dark);
+                border-color: var(--apple-green-dark);
+            }
+            .card {
+                border: none;
+                box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+            }
+            .action-buttons .btn {
+                padding: 0.25rem 0.5rem;
+                font-size: 0.875rem;
+            }
+            .breadcrumb {
+                margin-bottom: 1rem;
+            }
+            .faculty-img {
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+        </style>
+    </head>
+    <body class="sb-nav-fixed">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark">
+            <!-- Navbar Brand-->
+            <a class="navbar-brand ps-3" href="../index.html">
+                <img src="../assets/img/MARSU LOGO.png" alt="MSU Logo" height="40" class="me-2">
+                MarSU Admin
+            </a>
+            <!-- Sidebar Toggle-->
+            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!">
+                <i class="fas fa-bars"></i>
+            </button>
+            <!-- Navbar Search-->
+            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+                <div class="input-group">
+                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+                </div>
+            </form>
+            <!-- Navbar-->
+            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-user fa-fw"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#!">Profile Settings</a></li>
+                        <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item" href="../index.html">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <div class="sb-sidenav-menu-heading">Main</div>
+                            <a class="nav-link" href="dashboard.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Dashboard
+                            </a>
+                            <div class="sb-sidenav-menu-heading">Academic</div>
+                            <a class="nav-link" href="students.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-graduation-cap"></i></div>
+                                Students
+                            </a>
+                            <a class="nav-link active" href="faculty.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                                Faculty
+                            </a>
+                            <a class="nav-link" href="courses.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
+                                Courses
+                            </a>
+                             <div class="sb-sidenav-menu-heading">Learning</div>
+                            <a class="nav-link active" href="javascript-guide.html">
+                                <div class="sb-nav-link-icon"><i class="fab fa-js"></i></div>
+                                JavaScript Guide
+                            </a>
+                             <a class="nav-link active" href="javascript-playground.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-code"></i></div>
+                                JavaScript Playground
+                            </a>
+                            <div class="sb-sidenav-menu-heading">BSIS STUDENTS</div>
+                            <a class="nav-link" href="studentportal.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-user-graduate"></i></div>
+                                Student Portal
+                            </a>
+                        </div>
+                    </div>
+                    <div class="sb-sidenav-footer">
+                        <div class="small">Logged in as:</div>
+                        Administrator
+                    </div>
+                </nav>
+            </div>
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h1 class="mt-4">Faculty</h1>
+                                <ol class="breadcrumb mb-4">
+                                    <li class="breadcrumb-item"><a href="dashboard.html">Dashboard</a></li>
+                                    <li class="breadcrumb-item active">Faculty</li>
+                                </ol>
+                            </div>
+                            <div>
+                                <!-- FIXED BUTTON -->
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addFaculty">
+                                    <i class="fas fa-plus"></i> Add New Faculty
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <div>
+                                    <i class="fas fa-chalkboard-teacher me-1"></i>
+                                    Faculty List
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <table id="facultyTable" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Department</th>
+                                            <th>Position</th>
+                                            <th>Contact</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>F001</td>
+                                            <td>
+                                                <img src="/image/siraldrin.jpeg" alt="Faculty" class="faculty-img me-2">
+                                                Aldrin Rey
+                                            </td>
+                                            <td>Information Sciences</td>
+                                            <td>Professor</td>
+                                            <td>reyaldrin@marsu.edu.ph</td>
+                                            <td><span class="badge bg-success">Active</span></td>
+                                            <td class="action-buttons">
+                                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editFaculty" data-index="0"><i class="fas fa-edit"></i></button>
+                                                <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#viewingFaculty" data-index="0"><i class="fas fa-eye"></i></button>
+                                                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deletingFaculty"><i class="fas fa-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>F002</td>
+                                            <td>
+                                                <img src="/image/sirdale.jpeg" alt="Faculty" class="faculty-img me-2">
+                                                Dale Ogbac
+                                            </td>
+                                            <td>Information Sciences</td>
+                                            <td>Professor</td>
+                                            <td>ogbacdale@marsu.edu.ph</td>
+                                            <td><span class="badge bg-success">Active</span></td>
+                                            <td class="action-buttons">
+                                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editFaculty" data-index="1"><i class="fas fa-edit"></i></button>
+                                                <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#viewingFaculty" data-index="1"><i class="fas fa-eye"></i></button>
+                                                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deletingFaculty"><i class="fas fa-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>F003</td>
+                                            <td>
+                                                <img src="/image/default.jpg" alt="Faculty" class="faculty-img me-2">
+                                                Alfred Flores
+                                            </td>
+                                            <td>Information Sciences</td>
+                                            <td>Associate Professor</td>
+                                            <td>floresalfred@marsu.edu.ph</td>
+                                            <td><span class="badge bg-success">Active</span></td>
+                                            <td class="action-buttons">
+                                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editFaculty" data-index="2"><i class="fas fa-edit"></i></button>
+                                                <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#viewingFaculty" data-index="2"><i class="fas fa-eye"></i></button>
+                                                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deletingFaculty"><i class="fas fa-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>F004</td>
+                                            <td>
+                                                <img src="/image/docrandell.jpeg" alt="Faculty" class="faculty-img me-2">
+                                                Dr. Randell Reginio
+                                            </td>
+                                            <td>Information Sciences</td>
+                                            <td>Campus Director</td>
+                                            <td>reginiorandell@marsu.edu.ph</td>
+                                            <td><span class="badge bg-warning text-dark">On Leave</span></td>
+                                            <td class="action-buttons">
+                                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editFaculty" data-index="3"><i class="fas fa-edit"></i></button>
+                                                <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#viewingFaculty" data-index="3"><i class="fas fa-eye"></i></button>
+                                                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deletingFaculty"><i class="fas fa-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Marinduque State University 2025</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    
+        <!--MODAL FOR DELETING FACULTY-->
+        <div class="modal fade" id="deletingFaculty" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-danger text-white">
+                        <h5 class="modal-title"><i class="fas fa-trash"></i> Do you want to Delete this Faculty?</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete this faculty?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                        <a href="" class="btn btn-danger">Yes</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--MODAL VIEWING OF FACULTY-->
+        <div class="modal fade" id="viewingFaculty" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog"> 
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title"><i class="fas fa-eye"></i> Viewing Faculty Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div> 
+                    <div class="modal-body"> 
+                        <p><strong>ID:</strong> <span id="viewingUserId"></span></p>
+                        <p><strong>Name:</strong> <span id="viewingUserName"></span></p>
+                        <p><strong>Email:</strong> <span id="viewingUserEmail"></span></p>
+                        <p><strong>Role:</strong> <span id="viewingUserRole"></span></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL EDITING FACULTY -->
+            <div class="modal fade" id="editFaculty" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title"><i class="fas fa-edit"></i> Edit Faculty</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editFacultyForm">
+                    <input type="hidden" id="editFacultyIndex">
+                    <div class="mb-3">
+                        <label for="editFacultyId" class="form-label">Faculty ID</label>
+                        <input type="text" class="form-control" id="editFacultyId" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editFacultyName" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="editFacultyName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editFacultyDept" class="form-label">Department</label>
+                        <input type="text" class="form-control" id="editFacultyDept" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editFacultyPosition" class="form-label">Position</label>
+                        <input type="text" class="form-control" id="editFacultyPosition" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editFacultyContact" class="form-label">Contact (Email)</label>
+                        <input type="email" class="form-control" id="editFacultyContact" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editFacultyStatus" class="form-label">Status</label>
+                        <select class="form-select" id="editFacultyStatus" required>
+                        <option value="Active">Active</option>
+                        <option value="On Leave">On Leave</option>
+                        <option value="Retired">Retired</option>
+                        </select>
+                    </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success" form="editFacultyForm">Update</button>
+                </div>
+                </div>
+            </div>
+            </div>
+
+
+        <!-- MODAL ADDING NEW FACULTY -->
+        <div class="modal fade" id="addFaculty" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-success text-white">
+                        <h5 class="modal-title"><i class="fas fa-user-plus"></i> Add New Faculty</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="addFacultyForm">
+                            <div class="mb-3">
+                                <label for="facultyId" class="form-label">Faculty ID</label>
+                                <input type="text" class="form-control" id="facultyId" placeholder="Enter Faculty ID" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="facultyName" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="facultyName" placeholder="Enter Full Name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="facultyDept" class="form-label">Department</label>
+                                <input type="text" class="form-control" id="facultyDept" placeholder="Enter Department" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="facultyPosition" class="form-label">Position</label>
+                                <input type="text" class="form-control" id="facultyPosition" placeholder="Enter Position" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="facultyContact" class="form-label">Contact (Email)</label>
+                                <input type="email" class="form-control" id="facultyContact" placeholder="Enter Email Address" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="facultyStatus" class="form-label">Status</label>
+                                <select class="form-select" id="facultyStatus" required>
+                                    <option value="">Select Status</option>
+                                    <option value="Active">Active</option>
+                                    <option value="On Leave">On Leave</option>
+                                    <option value="Retired">Retired</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-success" form="addFacultyForm">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scripts -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="../js/scripts.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+        <script>
+            window.addEventListener('DOMContentLoaded', event => {
+                const datatablesSimple = document.getElementById('facultyTable');
+                if (datatablesSimple) {
+                    new simpleDatatables.DataTable(datatablesSimple);
+                }
+            });
+
+            // Handle form submission
+            document.getElementById('addFacultyForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+                alert('New faculty added successfully!');
+                bootstrap.Modal.getInstance(document.getElementById('addFaculty')).hide();
+                this.reset();
+            });
+
+            // Users data
+            const users = [
+                {
+                id: "F001",
+                name: "Aldrin Rey",
+                email: "reyaldrin@marsu.edu.ph",
+                role: "Professor"
+                },
+                {
+                    id: "F002",
+                    name: "Dale Ogbac",
+                    email: "ogbacdale@marsu.edu.ph",
+                    role: "Professor"
+                },
+                {
+                    id: "F003",
+                    name: "Alfred Flores",
+                    email: "floresalfred@marsu.edu",
+                    role: "Associate Professor"
+                },
+                {
+                    id: "F004",
+                    name: "Dr. Randell Reginio",
+                    email: "reginiorandell@marsu.edu.ph",
+                    role: "Campus Director"
+                }
+                ];
+
+                // When modal is shown
+                    var viewingFacultyModal = document.getElementById('viewingFaculty');
+
+                    viewingFacultyModal.addEventListener('show.bs.modal', function (event) {
+                    var button = event.relatedTarget;   
+                    var index = button.getAttribute('data-index'); 
+                    var user = users[index]; 
+
+                // Fill modal content
+                    document.getElementById("viewingUserId").textContent = user.id;
+                    document.getElementById("viewingUserName").textContent = user.name;
+                    document.getElementById("viewingUserEmail").textContent = user.email;
+                    document.getElementById("viewingUserRole").textContent = user.role;
+                });
+
+                // Handle Edit Faculty modal open
+                    var editFacultyModal = document.getElementById('editFaculty');
+
+                    editFacultyModal.addEventListener('show.bs.modal', function (event) {
+                    var button = event.relatedTarget;
+                    var index = button.getAttribute('data-index');
+                    var user = users[index];
+
+                    // Save index for update
+                    document.getElementById("editFacultyIndex").value = index;
+
+                    // Fill fields
+                    document.getElementById("editFacultyId").value = user.id;
+                    document.getElementById("editFacultyName").value = user.name;
+                    document.getElementById("editFacultyDept").value = user.department || "Information Sciences";
+                    document.getElementById("editFacultyPosition").value = user.role;
+                    document.getElementById("editFacultyContact").value = user.email;
+                    document.getElementById("editFacultyStatus").value = user.status || "Active";
+                    });
+
+                    // Handle form submission
+                    document.getElementById("editFacultyForm").addEventListener("submit", function (e) {
+                    e.preventDefault();
+
+                    let index = document.getElementById("editFacultyIndex").value;
+                    users[index].name = document.getElementById("editFacultyName").value;
+                    users[index].department = document.getElementById("editFacultyDept").value;
+                    users[index].role = document.getElementById("editFacultyPosition").value;
+                    users[index].email = document.getElementById("editFacultyContact").value;
+                    users[index].status = document.getElementById("editFacultyStatus").value;
+
+                    alert("Faculty updated successfully!");
+
+                    // Close modal
+                    bootstrap.Modal.getInstance(editFacultyModal).hide();
+                    });
+
+        </script>
+    </body>
+</html>

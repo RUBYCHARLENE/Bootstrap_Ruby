@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Student Portal - MarSU Admin</title>
+
+    <!-- Bootstrap & Icons -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/bootstrap-icons.css">
+    <script src="../js/all.js" crossorigin="anonymous"></script>
+
+    <style>
+        :root {
+            --apple-green: #4CAF50;
+            --apple-green-dark: #388E3C;
+        }
+        .sb-topnav { background-color: var(--apple-green) !important; }
+        .btn-primary {
+            background-color: var(--apple-green);
+            border-color: var(--apple-green);
+        }
+        .btn-primary:hover {
+            background-color: var(--apple-green-dark);
+            border-color: var(--apple-green-dark);
+        }
+        .card { border: none; box-shadow: 0 0.15rem 1.75rem rgba(58,59,69,0.15); }
+        .schedule-table th, .schedule-table td { text-align: center; }
+    </style>
+</head>
+<body class="sb-nav-fixed">
+
+    <!-- Top Navbar -->
+    <nav class="sb-topnav navbar navbar-expand navbar-dark">
+        <a class="navbar-brand ps-3" href="../index.html">
+            <img src="../assets/img/MARSU LOGO.png" alt="MSU Logo" height="40" class="me-2">
+            MarSU Admin
+        </a>
+        <button class="btn btn-link btn-sm" id="sidebarToggle"><i class="fas fa-bars"></i></button>
+        <ul class="navbar-nav ms-auto me-3">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" data-bs-toggle="dropdown">
+                    <i class="fas fa-user fa-fw"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#">Profile Settings</a></li>
+                    <li><a class="dropdown-item" href="#">Activity Log</a></li>
+                    <li><hr class="dropdown-divider" /></li>
+                    <li><a class="dropdown-item" href="../index.html">Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Sidebar -->
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">Main</div>
+                        <a class="nav-link" href="dashboard.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Dashboard
+                            </a>
+                            <div class="sb-sidenav-menu-heading">Academic</div>
+                            <a class="nav-link" href="students.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-graduation-cap"></i></div>
+                                Students
+                            </a>
+                            <a class="nav-link" href="faculty.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                                Faculty
+                            </a>
+                            <a class="nav-link" href="courses.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
+                                Courses
+                            </a>
+                             <div class="sb-sidenav-menu-heading">Learning</div>
+                            <a class="nav-link" href="javascript-guide.html">
+                                <div class="sb-nav-link-icon"><i class="fab fa-js"></i></div>
+                                JavaScript Guide
+                            </a>
+                             <a class="nav-link" href="javascript-playground.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-code"></i></div>
+                                JavaScript Playground
+                            </a>
+                            <div class="sb-sidenav-menu-heading">BSIS STUDENTS</div>
+                            <a class="nav-link" href="studentportal.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-user-graduate"></i></div>
+                                Student Portal
+                            </a>
+                    </div>
+                </div>
+                <div class="sb-sidenav-footer">
+                    <div class="small">Logged in as:</div>
+                    Administrator
+                </div>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+
+                    <h1 class="mt-4">Student Portal</h1>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item"><a href="dashboard.html">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Student Portal</li>
+                    </ol>
+
+                    <!-- Student Profile -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-primary text-white">
+                            <i class="fas fa-id-card"></i> Student Profile
+                        </div>
+                        <div class="card-body d-flex align-items-center">
+                            <img src="/image/ruby.jpeg" alt="Student Photo" class="rounded-circle me-4" width="100" height="100">
+                            <div>
+                                <h5><strong>Ruby Charlene Perilla</strong></h5>
+                                <p>ID: 23S0090<br>
+                                Course: BS Information Systems<br>
+                                Year Level: 3rd Year<br>
+                                Email: perillarubycharlene@marsu.edu.ph<br>
+                                Contact: 0930-986-9797</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Enrollment Status -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-success text-white">
+                            <i class="fas fa-check-circle"></i> Enrollment Status
+                        </div>
+                        <div class="card-body">
+                            <p><strong>Status:</strong> Enrolled</p>
+                            <p><strong>Semester:</strong> 1st Semester, SY 2025-2026</p>
+                            <a href="#" class="btn btn-sm btn-primary"><i class="fas fa-file-alt"></i> View COR</a>
+                        </div>
+                    </div>
+
+                    <!-- Grades -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-info text-white">
+                            <i class="fas fa-star"></i> Grades
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Subject Code</th>
+                                        <th>Subject Title</th>
+                                        <th>Grade</th>
+                                        <th>Remarks</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>ISP301</td>
+                                        <td>Financial Management</td>
+                                        <td>1.20</td>
+                                        <td>Passed</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ISP302</td>
+                                        <td>Business Intelligence</td>
+                                        <td>1.40</td>
+                                        <td>Passed</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ISP303</td>
+                                        <td>IS Project Mangement 1</td>
+                                        <td>1.10</td>
+                                        <td>Passed</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Document Request -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-warning text-dark">
+                            <i class="fas fa-file-alt"></i> Document Requests
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <label class="form-label">Select Document:</label>
+                                <select class="form-select mb-3">
+                                    <option value="cor">Certificate of Registration</option>
+                                    <option value="tor">Transcript of Records</option>
+                                    <option value="gm">Good Moral Certificate</option>
+                                </select>
+                                <button class="btn btn-primary"><i class="fas fa-paper-plane"></i> Submit Request</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Announcements & Events -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-secondary text-white">
+                            <i class="fas fa-bullhorn"></i> Announcements & Events
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <strong>Sept 24, 2025:</strong> Midterm Examination Week starts. Please check the exam schedule posted in your faculty department.
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Oct 10, 2025:</strong> Deadline for Document Requests. Make sure to file TOR, Good Moral, and other requests before the deadline.
+                                </li>
+                            <li class="list-group-item">
+                                <strong>Dec 6, 2025:</strong> Enrollment for 2nd Semester begins. Visit the registrar’s office or enroll via the online portal.
+                            </li>
+                        </ul>
+                        </div>
+                    </div>
+    
+            </main>
+
+            <!-- Footer -->
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid px-4">
+                    <div class="d-flex justify-content-between small">
+                        <div class="text-muted">© Marinduque State University 2025</div>
+                        <div>
+                            <a href="#">Privacy Policy</a> · <a href="#">Terms & Conditions</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="../js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
